@@ -5,12 +5,12 @@ import { deleteComment as delComp } from '../../api/comments';
 
 type CommentsState = {
   items: Comment[];
-  loading: boolean;
+  loaded: boolean;
   hasError: boolean;
 };
 const initialState: CommentsState = {
   items: [],
-  loading: false,
+  loaded: false,
   hasError: false,
 };
 
@@ -49,7 +49,7 @@ export const commentsSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.items = [];
       // eslint-disable-next-line no-param-reassign
-      state.loading = false;
+      state.loaded = false;
       // eslint-disable-next-line no-param-reassign
       state.hasError = false;
     },
@@ -59,7 +59,7 @@ export const commentsSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.items = [];
       // eslint-disable-next-line no-param-reassign
-      state.loading = true;
+      state.loaded = true;
       // eslint-disable-next-line no-param-reassign
       state.hasError = false;
     });
@@ -69,14 +69,14 @@ export const commentsSlice = createSlice({
         // eslint-disable-next-line no-param-reassign
         state.items = action.payload;
         // eslint-disable-next-line no-param-reassign
-        state.loading = false;
+        state.loaded = false;
         // eslint-disable-next-line no-param-reassign
         state.hasError = false;
       },
     );
     builder.addCase(fetchCommentsByPost.rejected, state => {
       // eslint-disable-next-line no-param-reassign
-      state.loading = false;
+      state.loaded = false;
       // eslint-disable-next-line no-param-reassign
       state.hasError = true;
     });

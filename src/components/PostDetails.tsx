@@ -15,7 +15,7 @@ export const PostDetails: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   const hasError = useAppSelector(state => state.comments.hasError);
-  const loading = useAppSelector(state => state.comments.loading);
+  const loaded = useAppSelector(state => state.comments.loaded);
   const post = useAppSelector(state => state.selectedPost) as Post;
   const comments = useAppSelector(state => state.comments.items) as Comment[];
 
@@ -47,21 +47,21 @@ export const PostDetails: React.FC = () => {
       </div>
 
       <div className="block">
-        {loading && <Loader />}
+        {loaded && <Loader />}
 
-        {!loading && hasError && (
+        {!loaded && hasError && (
           <div className="notification is-danger" data-cy="CommentsError">
             Something went wrong
           </div>
         )}
 
-        {!loading && !hasError && comments.length === 0 && (
+        {!loaded && !hasError && comments.length === 0 && (
           <p className="title is-4" data-cy="NoCommentsMessage">
             No comments yet
           </p>
         )}
 
-        {!loading && !hasError && comments.length > 0 && (
+        {!loaded && !hasError && comments.length > 0 && (
           <>
             <p className="title is-4">Comments:</p>
 
@@ -95,7 +95,7 @@ export const PostDetails: React.FC = () => {
           </>
         )}
 
-        {!loading && !hasError && !visible && (
+        {!loaded && !hasError && !visible && (
           <button
             data-cy="WriteCommentButton"
             type="button"
@@ -106,7 +106,7 @@ export const PostDetails: React.FC = () => {
           </button>
         )}
 
-        {!loading && !hasError && visible && (
+        {!loaded && !hasError && visible && (
           <NewCommentForm onSubmit={handleAddComment} />
         )}
       </div>

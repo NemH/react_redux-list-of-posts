@@ -10,13 +10,13 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 
 type UsersState = {
   users: User[];
-  loading: boolean;
+  loaded: boolean;
   hasError: boolean;
 };
 
 const initialState: UsersState = {
   users: [],
-  loading: false,
+  loaded: false,
   hasError: false,
 };
 
@@ -27,17 +27,17 @@ export const UsersSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(fetchUsers.pending, state => {
       // eslint-disable-next-line no-param-reassign
-      state.loading = true;
+      state.loaded = true;
     });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       // eslint-disable-next-line no-param-reassign
-      state.loading = false;
+      state.loaded = false;
       // eslint-disable-next-line no-param-reassign
       state.users = action.payload;
     });
     builder.addCase(fetchUsers.rejected, state => {
       // eslint-disable-next-line no-param-reassign
-      state.loading = false;
+      state.loaded = false;
       // eslint-disable-next-line no-param-reassign
       state.hasError = true;
     });

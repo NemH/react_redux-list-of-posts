@@ -17,7 +17,7 @@ import { clearSelectedPost } from './features/selectedPost/selectedPostSlice';
 export const App: React.FC = () => {
   const author = useAppSelector(state => state.author);
   const posts = useAppSelector(state => state.posts);
-  const loading = useAppSelector(state => state.posts.loading);
+  const loaded = useAppSelector(state => state.posts.loaded);
   const hasError = useAppSelector(state => state.posts.hasError);
   const selectedPost = useAppSelector(state => state.selectedPost);
 
@@ -38,7 +38,7 @@ export const App: React.FC = () => {
     dispatch(fetchPostsByUser(author.id));
   }, [author, dispatch]);
 
-  const showNoPosts = author && !loading && !hasError;
+  const showNoPosts = author && !loaded && !hasError;
 
   return (
     <main className="section">
@@ -53,9 +53,9 @@ export const App: React.FC = () => {
               <div className="block" data-cy="MainContent">
                 {!author && <p data-cy="NoSelectedUser">No user selected</p>}
 
-                {author && loading && <Loader />}
+                {author && loaded && <Loader />}
 
-                {author && !loading && hasError && (
+                {author && !loaded && hasError && (
                   <div
                     className="notification is-danger"
                     data-cy="PostsLoadingError"
