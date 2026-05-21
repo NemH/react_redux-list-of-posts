@@ -4,7 +4,7 @@ import authorSlice from '../features/author/authorSlice';
 import UsersSlice from '../features/users/usersSlice';
 import postsSlice from '../features/posts/postsSlice';
 import selectedPostSlice from '../features/selectedPost/selectedPostSlice';
-import commentsSlice from '../features/comments/commentsSliceSlice';
+import commentsSlice from '../features/comments/commentsSlice';
 
 export const store = configureStore({
   reducer: {
