@@ -9,7 +9,7 @@ import {
   addComment,
   deleteComment,
   fetchCommentsByPost,
-} from '../features/comments/commenstSlice';
+} from '../features/comments/commentsSliceSlice';
 
 export const PostDetails: React.FC = () => {
   const [visible, setVisible] = useState(false);
